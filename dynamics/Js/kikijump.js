@@ -1,14 +1,14 @@
 window.addEventListener("load", ()=>{
     var canvas = document.getElementById("pantalla");
     var ctx = canvas.getContext("2d");
-    var pantalla = 0;
+    var pantalla = 1;
 
     function fondo()
     {
         ctx.beginPath();
             ctx.rect(0,0,canvas.width,canvas.height);
             ctx.fillStyle = "#0D3A48";
-            ctx.fillStyle();
+            ctx.fill();
         ctx.closePath();
     }
 
@@ -29,8 +29,11 @@ window.addEventListener("load", ()=>{
             fondo();
             casillamenu();
         }
+        else if (pantalla==1)
+        {
+            screen1();
+        }
     }
-
     requestAnimationFrame(draw);
     
 })
