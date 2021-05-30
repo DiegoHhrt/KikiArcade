@@ -39,16 +39,15 @@ var plats = [];
 var i=0, change=0;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
-//var p1=new Image();
 
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
-//p1.src=greenP.platformPath();
 
 var pPurple=new Image();
 var pYellow=new Image();
 var pRed=new Image();
 var pGreen=new Image();
 loadImg();
+generatePl();
 function loadImg () {
     pPurple.src="../statics/Images/pPurple.png";
     pYellow.src="../statics/Images/pYellow.png";
@@ -67,7 +66,6 @@ function generatePl()
 
 function screen1()
 {
-    //cont.clearRect(0,0, cWidth, cHeight);
     cont.beginPath();
         cont.rect(0,0,cWidth,cHeight);
         cont.fillStyle = "#00b4c4";
@@ -78,7 +76,14 @@ function screen1()
 function img (x, y)
 {
     //Game platforms
-    
+    cont.drawImage(plats[0].Img, cWidth/plats[0].pX, cHeight/plats[0].pY, plats[0].Wi, plats[0].He);
+    cont.drawImage(plats[1].Img, cWidth/plats[1].pX, cHeight/plats[1].pY, plats[1].Wi, plats[1].He);
+    cont.drawImage(plats[2].Img, cWidth/plats[2].pX, cHeight/plats[2].pY, plats[2].Wi, plats[2].He);
+    cont.drawImage(plats[3].Img, cWidth/plats[3].pX, cHeight/plats[3].pY, plats[3].Wi, plats[3].He);
+    cont.drawImage(plats[4].Img, cWidth/plats[4].pX, cHeight/plats[4].pY, plats[4].Wi, plats[4].He);
+    cont.drawImage(plats[5].Img, cWidth/plats[5].pX, cHeight/plats[5].pY, plats[5].Wi, plats[5].He);
+    cont.drawImage(plats[6].Img, cWidth/plats[6].pX, cHeight/plats[6].pY, plats[6].Wi, plats[6].He);
+    cont.drawImage(plats[7].Img, cWidth/plats[7].pX, cHeight/plats[7].pY, plats[7].Wi, plats[7].He);
     //Kiki img
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
     
