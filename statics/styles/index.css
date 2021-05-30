@@ -1,0 +1,41 @@
+/*=Tipografías --------------------------------------*/
+@font-face {
+    font-family: Press;
+    src: url("../Fonts/PressStart2P-Regular.ttf");
+}
+
+/*=Cuerpo --------------------------------------*/
+body{
+    font-family: Press, fantasy;
+    color: #D20404;
+    background-color: #050368;
+    text-align: center;
+}
+
+
+/*=Barra de Navegación --------------------------------------*/
+nav{
+    background-color: #999999;
+}
+a, a:hover, .nav-link{
+    color: #D20404;
+    text-decoration: none;
+}
+.nav-link:hover, .nav-link:focus, #navbarDropdown:focus{
+    color: #ff4d4d;
+    text-decoration: none;
+}
+#rojo, #boton{
+    background-color: #D20404;
+}
+#azul{
+    background-color: #050368;
+    color: gray;
+}
+#azul:active{
+
+    color: white;
+}
+
+
+
