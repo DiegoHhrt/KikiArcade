@@ -1,6 +1,6 @@
 var can = document.getElementById("pantalla");
 var cont = can.getContext("2d");
-var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight;
+var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 
 var kikiSprite=new Image();
 kikiSprite.height=cWidth/8;
@@ -25,15 +25,14 @@ function img (x, y)
 document.querySelector("body").addEventListener("keydown", (event)=>{
     if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
     {
-        if((posX+kX)>=0)
+        if((posX+kX)>0)
         {
             kX-=40;
         }
         else
         {
-            console.log(kX, posX);
             posX=cWidth;
-            kx=0;
+            kX=0;
         }
     }
     if(event.key==="D"||event.key==="d"||event.key==="ArrowRight")
