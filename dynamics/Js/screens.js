@@ -8,6 +8,8 @@ kikiSprite.width=cWidth/8
 
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
 
+
+
 function screen1()
 {
     cont.clearRect(0,0, cWidth, cHeight);
