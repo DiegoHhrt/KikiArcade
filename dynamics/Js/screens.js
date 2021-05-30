@@ -1,33 +1,28 @@
-var can = document.getElementById("pantalla");
-var cont = can.getContext("2d");
-var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
-
-
-class platform{
+class Platform{
     constructor(x, y, w, h, platform)
     {
         this.pX=x;
         this.pY=y;
-        this.W=w;
-        this.H=h;
+        this.Wi=w;
+        this.He=h;
         this.path=platform;
     }
     generatePlatform()
     {
         let ruta="";
-        if(this.platform==1)
+        if(this.path==1)
         {
             ruta="../statics/Images/pGreen.png";
         }
-        if(this.platform==2)
+        if(this.path==2)
         {
             ruta="../statics/Images/pPurple.png";
         }
-        if(this.platform==3)
+        if(this.path==3)
         {
             ruta="../statics/Images/pRed.png";
         }
-        if(this.platform==4)
+        if(this.path==4)
         {
             ruta="../statics/Images/pYellow.png";
         }
@@ -42,12 +37,20 @@ class platform{
     }
 }
 
-var kikiSprite=new Image();
-kikiSprite.height=cWidth/8;
-kikiSprite.width=cWidth/8
+var can = document.getElementById("pantalla");
+var cont = can.getContext("2d");
+var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
+var numP=Math.round(Math.random()*9)+1;
+var randPosX, randPosY;
+var greenP = new Platform(cWidth/2, cHeight/2, cWidth/5, cHeight/10, 3);
+var i=0, change=0;
+
+
+var kikiSprite=new Image(cWidth/8, cWidth/8);
+var p1=new Image();
 
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
-
+p1.src=greenP.generatePlatform();
 
 
 function screen1()
@@ -62,7 +65,16 @@ function screen1()
 }
 function img (x, y)
 {
+    if(i<=numP)
+    {
+        randPosX=Math.round(Math.random()*20);
+        randPosY=Math.round(Math.random()*30);
+    }
+    i++;
+    cont.drawImage(p1, cWidth/randPosX, cHeight/randPosY, greenP.Wi, greenP.He);
+    cont.drawImage(p1, greenP.pX, greenP.pY, greenP.Wi, greenP.He);
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
+    
 }
 document.querySelector("body").addEventListener("keydown", (event)=>{
     if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
@@ -87,6 +99,21 @@ document.querySelector("body").addEventListener("keydown", (event)=>{
         {
             posX=0;
             kX=0;
+        }
+    }
+    if(event.key==="W"||event.key==="w"||event.key==="ArrowUp")
+    {
+        if((posY+kY)>10)
+        {
+            kY-=40;
+            console.log(posY, kY)
+        }
+    }
+    if(event.key==="S"||event.key==="s"||event.key==="ArrowDown")
+    {
+        if((posY+kY)<cHeight)
+        {
+            kY+=40;
         }
     }
 })
