@@ -1,12 +1,11 @@
 class Platform{
-    constructor()
+    constructor(cW, cH, c)
     {
-        this.pX = Math.round(Math.random()*20);
-        this.pY = Math.round(Math.random()*30);
-        this.Wi=cWidth/5+Math.random();
-        this.He=cHeight/10;
+        this.Wi=cW/5+Math.random();
+        this.He=cH/10;
         this.Img=this.platformPath();
-
+        this.pX = Math.round(Math.random()*(cW - this.Wi));
+        this.pY = (cH/8)*c;//+this.He;//+ Math.round(Math.random()*(()*c));
     }
     platformPath()
     {
@@ -57,9 +56,11 @@ function loadImg () {
 
 function generatePl()
 {
+    let c=0;
     while(plats.length<8)
     {
-        plats.push(new Platform());
+        plats.push(new Platform(cWidth, cHeight, c));
+        ++c;
     }
 
 }
@@ -76,14 +77,14 @@ function screen1()
 function img (x, y)
 {
     //Game platforms
-    cont.drawImage(plats[0].Img, cWidth/plats[0].pX, cHeight/plats[0].pY, plats[0].Wi, plats[0].He);
-    cont.drawImage(plats[1].Img, cWidth/plats[1].pX, cHeight/plats[1].pY, plats[1].Wi, plats[1].He);
-    cont.drawImage(plats[2].Img, cWidth/plats[2].pX, cHeight/plats[2].pY, plats[2].Wi, plats[2].He);
-    cont.drawImage(plats[3].Img, cWidth/plats[3].pX, cHeight/plats[3].pY, plats[3].Wi, plats[3].He);
-    cont.drawImage(plats[4].Img, cWidth/plats[4].pX, cHeight/plats[4].pY, plats[4].Wi, plats[4].He);
-    cont.drawImage(plats[5].Img, cWidth/plats[5].pX, cHeight/plats[5].pY, plats[5].Wi, plats[5].He);
-    cont.drawImage(plats[6].Img, cWidth/plats[6].pX, cHeight/plats[6].pY, plats[6].Wi, plats[6].He);
-    cont.drawImage(plats[7].Img, cWidth/plats[7].pX, cHeight/plats[7].pY, plats[7].Wi, plats[7].He);
+    cont.drawImage(plats[0].Img, plats[0].pX, plats[0].pY, plats[0].Wi, plats[0].He);
+    cont.drawImage(plats[1].Img, plats[1].pX, plats[1].pY, plats[1].Wi, plats[1].He);
+    cont.drawImage(plats[2].Img, plats[2].pX, plats[2].pY, plats[2].Wi, plats[2].He);
+    cont.drawImage(plats[3].Img, plats[3].pX, plats[3].pY, plats[3].Wi, plats[3].He);
+    cont.drawImage(plats[4].Img, plats[4].pX, plats[4].pY, plats[4].Wi, plats[4].He);
+    cont.drawImage(plats[5].Img, plats[5].pX, plats[5].pY, plats[5].Wi, plats[5].He);
+    cont.drawImage(plats[6].Img, plats[6].pX, plats[6].pY, plats[6].Wi, plats[6].He);
+    cont.drawImage(plats[7].Img, plats[7].pX, plats[7].pY, plats[7].Wi, plats[7].He);
     //Kiki img
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
     
