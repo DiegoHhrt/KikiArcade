@@ -1,38 +1,32 @@
 class Platform{
-    constructor(x, y, w, h, platform)
+    constructor()
     {
-        this.pX=x;
-        this.pY=y;
-        this.Wi=w;
-        this.He=h;
-        this.path=platform;
+        this.pX = Math.round(Math.random()*20);
+        this.pY = Math.round(Math.random()*30);
+        this.Wi=cWidth/5+Math.random();
+        this.He=cHeight/10;
+        this.Img=this.platformPath();
+
     }
-    generatePlatform()
+    platformPath()
     {
-        let ruta="";
-        if(this.path==1)
+        switch (Math.round(Math.random()*3)+1)
         {
-            ruta="../statics/Images/pGreen.png";
+            case 1:
+                return pGreen;
+            case 2:
+                return pPurple;
+            case 3:
+                return pRed;
+            case 4:
+                return pYellow;
         }
-        if(this.path==2)
-        {
-            ruta="../statics/Images/pPurple.png";
-        }
-        if(this.path==3)
-        {
-            ruta="../statics/Images/pRed.png";
-        }
-        if(this.path==4)
-        {
-            ruta="../statics/Images/pYellow.png";
-        }
-        return ruta;
     }
     move (activate=false)
     {
         if(activate)
         {
-
+            
         }
     }
 }
@@ -41,38 +35,51 @@ var can = document.getElementById("pantalla");
 var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 var numP=Math.round(Math.random()*9)+1;
-var randPosX, randPosY;
-var greenP = new Platform(cWidth/2, cHeight/2, cWidth/5, cHeight/10, 3);
+var plats = [];
 var i=0, change=0;
 
-
 var kikiSprite=new Image(cWidth/8, cWidth/8);
-var p1=new Image();
+//var p1=new Image();
 
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
-p1.src=greenP.generatePlatform();
+//p1.src=greenP.platformPath();
 
+var pPurple=new Image();
+var pYellow=new Image();
+var pRed=new Image();
+var pGreen=new Image();
+loadImg();
+function loadImg () {
+    pPurple.src="../statics/Images/pPurple.png";
+    pYellow.src="../statics/Images/pYellow.png";
+    pRed.src="../statics/Images/pRed.png";
+    pGreen.src="../statics/Images/pGreen.png";
+}
+
+function generatePl()
+{
+    while(plats.length<8)
+    {
+        plats.push(new Platform());
+    }
+
+}
 
 function screen1()
 {
-    cont.clearRect(0,0, cWidth, cHeight);
-        cont.beginPath();
-            cont.rect(0,0,cWidth,cHeight);
-            cont.fillStyle = "#00b4c4";
-            cont.fill();
-            img(kX,kY);       
-        cont.closePath();
+    //cont.clearRect(0,0, cWidth, cHeight);
+    cont.beginPath();
+        cont.rect(0,0,cWidth,cHeight);
+        cont.fillStyle = "#00b4c4";
+        cont.fill();
+        img(kX,kY);       
+    cont.closePath();
 }
 function img (x, y)
 {
-    if(i<=numP)
-    {
-        randPosX=Math.round(Math.random()*20);
-        randPosY=Math.round(Math.random()*30);
-    }
-    i++;
-    cont.drawImage(p1, cWidth/randPosX, cHeight/randPosY, greenP.Wi, greenP.He);
-    cont.drawImage(p1, greenP.pX, greenP.pY, greenP.Wi, greenP.He);
+    //Game platforms
+    
+    //Kiki img
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
     
 }
