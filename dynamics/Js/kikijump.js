@@ -33,6 +33,7 @@ window.addEventListener("load", ()=>{
         {
             screen1();
         }
+        requestAnimationFrame(draw);
     }
     requestAnimationFrame(draw);
     
