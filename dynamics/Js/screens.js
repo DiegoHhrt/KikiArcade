@@ -2,6 +2,46 @@ var can = document.getElementById("pantalla");
 var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 
+
+class platform{
+    constructor(x, y, w, h, platform)
+    {
+        this.pX=x;
+        this.pY=y;
+        this.W=w;
+        this.H=h;
+        this.path=platform;
+    }
+    generatePlatform()
+    {
+        let ruta="";
+        if(this.platform==1)
+        {
+            ruta="../statics/Images/pGreen.png";
+        }
+        if(this.platform==2)
+        {
+            ruta="../statics/Images/pPurple.png";
+        }
+        if(this.platform==3)
+        {
+            ruta="../statics/Images/pRed.png";
+        }
+        if(this.platform==4)
+        {
+            ruta="../statics/Images/pYellow.png";
+        }
+        return ruta;
+    }
+    move (activate=false)
+    {
+        if(activate)
+        {
+
+        }
+    }
+}
+
 var kikiSprite=new Image();
 kikiSprite.height=cWidth/8;
 kikiSprite.width=cWidth/8
