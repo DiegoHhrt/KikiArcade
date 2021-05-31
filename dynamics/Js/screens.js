@@ -78,6 +78,7 @@ function screen1()
         cont.fillStyle = "#00b4c4";
         cont.fill();
         jump();
+        collision();
         img(kX,kY);       
     cont.closePath();
 }
@@ -96,46 +97,55 @@ function img (x, y)
     //Kiki img
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
 }
-//Función que controlan las colisiones y saltos
-function jump () {
-    // setTimeout(()=>{
-    //     ky+=(cHeight/8)*2
-    // }, 500)
-
-    //colisiones con plataformas
+//Función que controlan las colisiones
+function collision () {
+    //colisiones con las plataformas individuales
     if(((posY+kY-cHeight/20)<=plats[7].pY&&posY+kY>=((plats[7].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[7].pX+plats[7].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[7].pX))
     {
-       console.log("same height1")
+       jump(true);
     }
     if(((posY+kY-cHeight/20)<=plats[6].pY&&posY+kY>=((plats[6].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[6].pX+plats[6].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[6].pX))
     {
-       console.log("same height2")
+       jump(true);
     }
     if(((posY+kY-cHeight/20)<=plats[5].pY&&posY+kY>=((plats[5].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[5].pX+plats[5].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[5].pX))
     {
-       console.log("same height3")
+       jump(true);
     }
     if(((posY+kY-cHeight/20)<=plats[4].pY&&posY+kY>=((plats[4].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[4].pX+plats[4].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[4].pX))
     {
-       console.log("same height4")
+       jump(true);
     }
     if(((posY+kY-cHeight/20)<=plats[3].pY&&posY+kY>=((plats[3].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[3].pX+plats[3].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[3].pX))
     {
-       console.log("same height5")
+       jump(true);
     }
     if(((posY+kY-cHeight/20)<=plats[2].pY&&posY+kY>=((plats[2].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[2].pX+plats[2].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[2].pX))
     {
-       console.log("same height6")
+       jump(true);
     }
     if(((posY+kY-cHeight/20)<=plats[1].pY&&posY+kY>=((plats[1].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[1].pX+plats[1].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[1].pX))
     {
-       console.log("same height7")
+       jump(true);
     }
     if(((posY+kY-cHeight/20)<=plats[0].pY&&posY+kY>=((plats[0].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[0].pX+plats[0].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[0].pX))
     {
-       console.log("same height8")
+       jump(true);
     }
 
+}
+//Maneja los saltos en caso de haber colisionado con una plataforma
+function jump(col) {
+    if(col)
+    {
+        kY-=cWidth/4
+    }
+    else
+    {
+        setTimeout(()=>{
+            kY+=3;
+        }, 2000)
+    }
 }
 
 //Eventos que controlan el movimiento y algunas mecánicas del juego 
@@ -168,7 +178,7 @@ document.querySelector("body").addEventListener("keydown", (event)=>{
     {
         if((posY+kY)>10)
         {
-            kY-=1;
+            jump(true);
         }
     }
     if(event.key==="S"||event.key==="s"||event.key==="ArrowDown")
