@@ -81,7 +81,7 @@ a, a:hover, .nav-link{
     height: 30px;
     background-color: #BF0F70;
 }
-/*=ojo--------------------------*/
+/*=ojo-*/
 #ojoIzq{
     position: absolute;
     top: 45%;
@@ -109,7 +109,7 @@ a, a:hover, .nav-link{
     border-radius: 50%;
     background-color: black;
 }
-/*=hocico--------------------------*/
+/*=hocico-*/
 #hocico{
     position: absolute;
     top: 60%;
@@ -144,7 +144,45 @@ a, a:hover, .nav-link{
     border-left: none;
     border-right: solid violet;
 }
-clip-path: url("#clipPolygon");
+/*=oreja-*/
+.orej1{
+    position: absolute;
+    top: 1%;
+    border: none;
+    border-top: 5px solid #9FBAC5;
+    width: 50px;
+    height: 50px;
+}
+#orejIzq1{
+    position: absolute;
+    left: 81%;
+    transform: rotate(-30deg);   
+}
+#orejDer1{
+    position: absolute;
+    right: 81%;
+    transform: rotate(30deg);   
+}
+#orejIzq2{
+    position: absolute;
+    top: 3%;
+    left: 95%;
+    transform: rotate(-65deg);   
+}
+#orejDer2{
+    position: absolute;
+    top: 3%;
+    right: 95%;
+    transform: rotate(65deg);   
+}
+.orej2{
+    width: 100px;
+    height: 100px;
+    background-color: #B8A9A4;
+    z-index: 1;
+}
+
+
 
 
 
