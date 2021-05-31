@@ -1,4 +1,4 @@
-//Objeto paleta, establece un ancho semi-variabñe, un alto fijo, una ruta de imágen psudoaleatoria
+//Clase plataforma, establece un ancho semi-variabñe, un alto fijo, una ruta de imágen psudoaleatoria
 //Establece una posición X aleatoria dentro del canvas y una posición Y semi-variable 
 class Platform{
     //Recibe como parámetros el alto y ancho del canvas, así como un contador que ayuda a determinar el órden de las plataformas
@@ -77,6 +77,7 @@ function screen1()
         cont.rect(0,0,cWidth,cHeight);
         cont.fillStyle = "#00b4c4";
         cont.fill();
+        jump();
         img(kX,kY);       
     cont.closePath();
 }
@@ -94,8 +95,49 @@ function img (x, y)
     cont.drawImage(plats[7].Img, plats[7].pX, plats[7].pY, plats[7].Wi, plats[7].He);
     //Kiki img
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
-    
 }
+//Función que controlan las colisiones y saltos
+function jump () {
+    // setTimeout(()=>{
+    //     ky+=(cHeight/8)*2
+    // }, 500)
+
+    //colisiones con plataformas
+    if(((posY+kY-cHeight/20)<=plats[7].pY&&posY+kY>=((plats[7].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[7].pX+plats[7].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[7].pX))
+    {
+       console.log("same height1")
+    }
+    if(((posY+kY-cHeight/20)<=plats[6].pY&&posY+kY>=((plats[6].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[6].pX+plats[6].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[6].pX))
+    {
+       console.log("same height2")
+    }
+    if(((posY+kY-cHeight/20)<=plats[5].pY&&posY+kY>=((plats[5].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[5].pX+plats[5].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[5].pX))
+    {
+       console.log("same height3")
+    }
+    if(((posY+kY-cHeight/20)<=plats[4].pY&&posY+kY>=((plats[4].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[4].pX+plats[4].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[4].pX))
+    {
+       console.log("same height4")
+    }
+    if(((posY+kY-cHeight/20)<=plats[3].pY&&posY+kY>=((plats[3].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[3].pX+plats[3].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[3].pX))
+    {
+       console.log("same height5")
+    }
+    if(((posY+kY-cHeight/20)<=plats[2].pY&&posY+kY>=((plats[2].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[2].pX+plats[2].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[2].pX))
+    {
+       console.log("same height6")
+    }
+    if(((posY+kY-cHeight/20)<=plats[1].pY&&posY+kY>=((plats[1].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[1].pX+plats[1].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[1].pX))
+    {
+       console.log("same height7")
+    }
+    if(((posY+kY-cHeight/20)<=plats[0].pY&&posY+kY>=((plats[0].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[0].pX+plats[0].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[0].pX))
+    {
+       console.log("same height8")
+    }
+
+}
+
 //Eventos que controlan el movimiento y algunas mecánicas del juego 
 document.querySelector("body").addEventListener("keydown", (event)=>{
     if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
@@ -126,15 +168,14 @@ document.querySelector("body").addEventListener("keydown", (event)=>{
     {
         if((posY+kY)>10)
         {
-            kY-=40;
-            console.log(posY, kY)
+            kY-=1;
         }
     }
     if(event.key==="S"||event.key==="s"||event.key==="ArrowDown")
     {
         if((posY+kY)<cHeight)
         {
-            kY+=40;
+            kY+=1;
         }
     }
 })
