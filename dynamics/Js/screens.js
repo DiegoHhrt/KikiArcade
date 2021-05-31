@@ -39,7 +39,7 @@ var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 var numP=Math.round(Math.random()*9)+1;
 var plats = [];
-var i=0, change=0;
+var i=0, change=0, down, up, state=1;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
@@ -51,7 +51,6 @@ var pGreen=new Image();
 
 loadImg();
 generatePl();
-
 //Función que inicializa los objetos imágen que contienen la ruta a las plataformas
 function loadImg () {
     pPurple.src="../statics/Images/pPurple.png";
@@ -74,12 +73,19 @@ function generatePl()
 function screen1()
 {
     cont.beginPath();
+    if(state==1)
+    {
         cont.rect(0,0,cWidth,cHeight);
         cont.fillStyle = "#00b4c4";
         cont.fill();
         jump();
         collision();
         img(kX,kY);       
+    }
+    else
+    {
+        cont.clearRect(0,0, cWidth, cHeight);
+    }
     cont.closePath();
 }
 //En esta función se dibujan las imágenes
@@ -136,18 +142,41 @@ function collision () {
 }
 //Maneja los saltos en caso de haber colisionado con una plataforma
 function jump(col) {
+    let j=0;
     if(col)
     {
-        kY-=cWidth/4
-    }
-    else
-    {
-        setTimeout(()=>{
-            kY+=3;
-        }, 2000)
+        clearInterval(down);
+        up = setInterval(() => {
+            kY-=3;
+            j+=3;
+            if(j>=cHeight/3)
+            {
+                fall();
+            }
+        }, 1);
     }
 }
-
+//Controla la caída progresiva
+function fall() {
+    clearInterval(up);
+        down = setInterval(() => {
+            if(posY+kY>=cHeight)
+            {
+                loosing();
+            }
+            else
+            {
+                kY+=5;
+            }
+        }, 1);
+}
+//controla si el juego se ha perdido o no 
+function loosing () {
+    console.log("lost");
+    state=0;
+    clearInterval(up);
+    clearInterval(down);
+}
 //Eventos que controlan el movimiento y algunas mecánicas del juego 
 document.querySelector("body").addEventListener("keydown", (event)=>{
     if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
