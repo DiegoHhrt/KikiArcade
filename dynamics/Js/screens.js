@@ -39,7 +39,7 @@ var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 var numP=Math.round(Math.random()*9)+1;
 var plats = [];
-var i=0, change=0, down, up, state=1, direction=0;
+var i=0, change=0, down, up, state=1, direction=0, start=true;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
@@ -80,11 +80,31 @@ function screen1()
         cont.fillStyle = "#00b4c4";
         cont.fill();
         collision();
-        img(kX,kY);       
+        img(kX,kY);      
+        if(start)
+        {
+            cont.beginPath();
+                cont.fillStyle="#000000";
+                cont.font = "20px sans-serif";
+                cont.fillText("Presiona W o la flecha hacia arriba para comenzar", cWidth/20, cHeight/4);
+                cont.fill();
+            cont.closePath();
+        } 
     }
     else
     {
-        cont.clearRect(0,0, cWidth, cHeight);
+        cont.rect(0,0, cWidth, cHeight);
+        cont.fillStyle="#142e4f";
+        cont.fill();
+        cont.beginPath();
+            cont.font = "25px sans-serif";
+            cont.fillStyle="#6bffa6";
+            cont.textAlign="center";
+            cont.fillText("Perdiste :(", cWidth/2, cHeight/4);
+            cont.fillText("Tu puntaje es: 500", cWidth/2, cHeight/2);
+            cont.fillText("Presiona cualquier tecla para reiniciar", cWidth/2, (cHeight/4)*3);
+            cont.fill();
+        cont.closePath();
     }
     cont.closePath();
 }
@@ -197,49 +217,46 @@ function fall() {
 }
 //controla si el juego se ha perdido o no 
 function loosing () {
-    console.log("lost");
     state=0;
     clearInterval(up);
     clearInterval(down);
 }
 //Eventos que controlan el movimiento y algunas mecánicas del juego 
 document.querySelector("body").addEventListener("keydown", (event)=>{
-    if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
+    if(state==1)
     {
-        if((posX+kX)>0)
+        if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
         {
-            kX-=10;
+            if((posX+kX)>0)
+            {
+                kX-=10;
+            }
+            else
+            {
+                posX=cWidth;
+                kX=0;
+            }
         }
-        else
+        if(event.key==="D"||event.key==="d"||event.key==="ArrowRight")
         {
-            posX=cWidth;
-            kX=0;
+            if((posX+kX)<cWidth)
+            {
+                kX+=10;
+            }
+            else
+            {
+                posX=0;
+                kX=0;
+            }
         }
-    }
-    if(event.key==="D"||event.key==="d"||event.key==="ArrowRight")
-    {
-        if((posX+kX)<cWidth)
-        {
-            kX+=10;
-        }
-        else
-        {
-            posX=0;
-            kX=0;
-        }
-    }
-    if(event.key==="W"||event.key==="w"||event.key==="ArrowUp")
-    {
-        if((posY+kY)>10)
+        if(start&&(event.key==="W"||event.key==="w"||event.key==="ArrowUp"))
         {
             jump(true);
+            start=false;
         }
     }
-    if(event.key==="S"||event.key==="s"||event.key==="ArrowDown")
+    else
     {
-        if((posY+kY)<cHeight)
-        {
-            kY+=1;
-        }
+        window.location.reload();
     }
 })
