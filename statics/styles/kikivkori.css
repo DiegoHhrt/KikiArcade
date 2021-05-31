@@ -1,0 +1,51 @@
+@font-face {
+    font-family: "8-bit";
+    src: url("../Fonts/8-BIT.TTF");
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#pantallaJuego{
+    width: 50%;
+    height: 100%;
+    position: relative;
+    left: 25%;
+    top: 0%;
+    background-color: black;
+    color: rgb(18, 18, 187);
+    text-align: center;
+    font-family: '8-bit', Courier, monospace;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#titulo{
+    color: rgb(18, 18, 187);
+}
+
+.opcion{
+    width: 50%;
+    height: 5%;
+    border: 1px solid #EFC424;
+    background-color: #EFB124;
+    color: white;
+}
+
+#play{
+    position: relative;
+    left: 25%;
+    top: 25%;
+}
+
+#controles{
+    position: relative;
+    left: 25%;
+    top: 50%;
+}
