@@ -39,7 +39,7 @@ var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 var numP=Math.round(Math.random()*9)+1;
 var plats = [];
-var i=0, change=0, down, up, state=1;
+var i=0, change=0, down, up, state=1, direction=0;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
@@ -51,6 +51,7 @@ var pGreen=new Image();
 
 loadImg();
 generatePl();
+jump();
 //Función que inicializa los objetos imágen que contienen la ruta a las plataformas
 function loadImg () {
     pPurple.src="../statics/Images/pPurple.png";
@@ -78,7 +79,6 @@ function screen1()
         cont.rect(0,0,cWidth,cHeight);
         cont.fillStyle = "#00b4c4";
         cont.fill();
-        jump();
         collision();
         img(kX,kY);       
     }
@@ -105,49 +105,73 @@ function img (x, y)
 }
 //Función que controlan las colisiones
 function collision () {
-    //colisiones con las plataformas individuales
-    if(((posY+kY-cHeight/20)<=plats[7].pY&&posY+kY>=((plats[7].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[7].pX+plats[7].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[7].pX))
+    //Sólo en caso de ir descendiendo, rebotas con las plataformas
+    if(direction==1)
     {
-       jump(true);
+        //colisiones con las plataformas individuales
+        if(((posY+kY-cHeight/20)<=plats[7].pY&&posY+kY>=((plats[7].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[7].pX+plats[7].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[7].pX))
+        {
+            clearInterval(down);
+            clearInterval(up);
+            jump(true);
+        }
+        if(((posY+kY-cHeight/20)<=plats[6].pY&&posY+kY>=((plats[6].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[6].pX+plats[6].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[6].pX))
+        {
+            clearInterval(down);
+            clearInterval(up);
+            jump(true);
+        }
+        if(((posY+kY-cHeight/20)<=plats[5].pY&&posY+kY>=((plats[5].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[5].pX+plats[5].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[5].pX))
+        {
+            clearInterval(down);
+            clearInterval(up);
+            jump(true);
+        }
+        if(((posY+kY-cHeight/20)<=plats[4].pY&&posY+kY>=((plats[4].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[4].pX+plats[4].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[4].pX))
+        {
+            clearInterval(down);
+            clearInterval(up);
+            jump(true);
+        }
+        if(((posY+kY-cHeight/20)<=plats[3].pY&&posY+kY>=((plats[3].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[3].pX+plats[3].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[3].pX))
+        {
+        
+            clearInterval(down);
+            clearInterval(up); 
+            jump(true);
+        }
+        if(((posY+kY-cHeight/20)<=plats[2].pY&&posY+kY>=((plats[2].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[2].pX+plats[2].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[2].pX))
+        {
+            clearInterval(down);
+            clearInterval(up);
+            jump(true);
+        }
+        if(((posY+kY-cHeight/20)<=plats[1].pY&&posY+kY>=((plats[1].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[1].pX+plats[1].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[1].pX))
+        {
+            clearInterval(down);
+            clearInterval(up);
+            jump(true);
+        }
+        if(((posY+kY-cHeight/20)<=plats[0].pY&&posY+kY>=((plats[0].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[0].pX+plats[0].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[0].pX))
+        {
+            clearInterval(down);
+            clearInterval(up);
+            jump(true);
+        }
     }
-    if(((posY+kY-cHeight/20)<=plats[6].pY&&posY+kY>=((plats[6].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[6].pX+plats[6].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[6].pX))
-    {
-       jump(true);
-    }
-    if(((posY+kY-cHeight/20)<=plats[5].pY&&posY+kY>=((plats[5].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[5].pX+plats[5].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[5].pX))
-    {
-       jump(true);
-    }
-    if(((posY+kY-cHeight/20)<=plats[4].pY&&posY+kY>=((plats[4].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[4].pX+plats[4].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[4].pX))
-    {
-       jump(true);
-    }
-    if(((posY+kY-cHeight/20)<=plats[3].pY&&posY+kY>=((plats[3].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[3].pX+plats[3].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[3].pX))
-    {
-       jump(true);
-    }
-    if(((posY+kY-cHeight/20)<=plats[2].pY&&posY+kY>=((plats[2].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[2].pX+plats[2].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[2].pX))
-    {
-       jump(true);
-    }
-    if(((posY+kY-cHeight/20)<=plats[1].pY&&posY+kY>=((plats[1].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[1].pX+plats[1].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[1].pX))
-    {
-       jump(true);
-    }
-    if(((posY+kY-cHeight/20)<=plats[0].pY&&posY+kY>=((plats[0].pY)+cHeight/30))&&((posX+kX+(kikiSprite.width/2)<=plats[0].pX+plats[0].Wi)&&posX+kX+(kikiSprite.width/2)>=plats[0].pX))
-    {
-       jump(true);
-    }
-
 }
 //Maneja los saltos en caso de haber colisionado con una plataforma
 function jump(col) {
+    direction=0;
     let j=0;
     if(col)
     {
         clearInterval(down);
         up = setInterval(() => {
-            kY-=3;
+            if(posY+kY>=0)
+            {
+                kY-=3;
+            }
             j+=3;
             if(j>=cHeight/3)
             {
@@ -158,6 +182,7 @@ function jump(col) {
 }
 //Controla la caída progresiva
 function fall() {
+    direction=1;
     clearInterval(up);
         down = setInterval(() => {
             if(posY+kY>=cHeight)
@@ -183,7 +208,7 @@ document.querySelector("body").addEventListener("keydown", (event)=>{
     {
         if((posX+kX)>0)
         {
-            kX-=40;
+            kX-=10;
         }
         else
         {
@@ -195,7 +220,7 @@ document.querySelector("body").addEventListener("keydown", (event)=>{
     {
         if((posX+kX)<cWidth)
         {
-            kX+=40;
+            kX+=10;
         }
         else
         {
