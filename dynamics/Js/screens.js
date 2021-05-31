@@ -1,12 +1,16 @@
+//Objeto paleta, establece un ancho semi-variabñe, un alto fijo, una ruta de imágen psudoaleatoria
+//Establece una posición X aleatoria dentro del canvas y una posición Y semi-variable 
 class Platform{
+    //Recibe como parámetros el alto y ancho del canvas, así como un contador que ayuda a determinar el órden de las plataformas
     constructor(cW, cH, c)
     {
         this.Wi=cW/5+Math.random();
         this.He=cH/10;
         this.Img=this.platformPath();
         this.pX = Math.round(Math.random()*(cW - this.Wi));
-        this.pY = (cH/8)*c;//+this.He;//+ Math.round(Math.random()*(()*c));
+        this.pY = ((cH/8)*c)+ Math.round(Math.random()*(cH/16));
     }
+    //Método que asigna una imágen de plataforma aleatoria al objeto
     platformPath()
     {
         switch (Math.round(Math.random()*3)+1)
@@ -38,22 +42,24 @@ var plats = [];
 var i=0, change=0;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
-
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
 
 var pPurple=new Image();
 var pYellow=new Image();
 var pRed=new Image();
 var pGreen=new Image();
+
 loadImg();
 generatePl();
+
+//Función que inicializa los objetos imágen que contienen la ruta a las plataformas
 function loadImg () {
     pPurple.src="../statics/Images/pPurple.png";
     pYellow.src="../statics/Images/pYellow.png";
     pRed.src="../statics/Images/pRed.png";
     pGreen.src="../statics/Images/pGreen.png";
 }
-
+//Se genera una cantidad de objetos plataforma que se asignan a un arreglo para faculitar su manipulación, se lleva un contador que permite al constructor asignar un órden
 function generatePl()
 {
     let c=0;
@@ -64,7 +70,7 @@ function generatePl()
     }
 
 }
-
+//Llamada en la función recursiva de dibujo que maneja al juego de kiki jump
 function screen1()
 {
     cont.beginPath();
@@ -74,6 +80,7 @@ function screen1()
         img(kX,kY);       
     cont.closePath();
 }
+//En esta función se dibujan las imágenes
 function img (x, y)
 {
     //Game platforms
@@ -89,6 +96,7 @@ function img (x, y)
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
     
 }
+//Eventos que controlan el movimiento y algunas mecánicas del juego 
 document.querySelector("body").addEventListener("keydown", (event)=>{
     if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
     {
