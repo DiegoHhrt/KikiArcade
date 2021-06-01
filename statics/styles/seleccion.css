@@ -1,0 +1,44 @@
+body{
+    text-align: center;
+    background-color: #D90000;
+}
+div{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    border: 1px solid black;
+}
+form{
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+h2{
+    position: absolute;
+    top: 30%;
+}
+#azul, #rojo{
+    position: absolute;
+    top: 32%;
+    left: 270px;
+    height: 50px;
+    width: 100px;
+}
+#azul{
+    background-color: darkblue;
+    color: white;
+}
+#rojo{
+    background-color: red;
+}
+#baya{
+    background: #0b07d2;
+    background: linear-gradient(90deg, #0b07d2 0%, #ce13c7 100%);
+    color: white;
+}
+#atardecer{
+    position: absolute;
+    left: 50%;
+    background: #D90000;
+    background: linear-gradient(90deg, #D90000 0%, #CC7004 100%);
+}
