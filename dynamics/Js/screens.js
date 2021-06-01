@@ -132,8 +132,11 @@ function img (x, y)
         plats[5].move(true, 5, cHeight, cWidth);
         plats[6].move(true, 6, cHeight, cWidth);
         plats[7].move(true, 7, cHeight, cWidth);
-        posY=cHeight-cHeight/5;
         kY=0;
+        posY=cHeight-10;
+        clearInterval(down);
+        clearInterval(up);
+        jump(true, true);
     }
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
 }
@@ -195,7 +198,7 @@ function collision () {
     }
 }
 //Maneja los saltos en caso de haber colisionado con una plataforma
-function jump(col) {
+function jump(col, transition) {
     direction=0;
     let j=0;
     if(col)
@@ -204,10 +207,15 @@ function jump(col) {
         up = setInterval(() => {
             if(posY+kY>=0)
             {
-                kY-=3;
+                kY-=4.5;
             }
-            j+=3;
-            if(j>=cHeight/3)
+            j+=4.5;
+            if(transition&&j>=cHeight/4)
+            {
+                fall();
+                console.log("transition");
+            }
+            else if(j>=cHeight/3)
             {
                 fall();
             }
@@ -225,7 +233,7 @@ function fall() {
             }
             else
             {
-                kY+=5;
+                kY+=7;
             }
         }, 1);
 }
