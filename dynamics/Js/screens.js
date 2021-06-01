@@ -85,6 +85,7 @@ function screen1()
         cont.beginPath();
         cont.fillStyle="#000000";
         cont.font = "20px sans-serif";
+        cont.textAlign="left";
         cont.fillText("Score: "+ punt, 20, cHeight/20);
         cont.fill();
         cont.closePath();
@@ -93,6 +94,7 @@ function screen1()
             cont.beginPath();
             cont.fillStyle="#000000";
             cont.font = "20px sans-serif";
+            cont.textAlign="left";
             cont.fillText("Presiona W o la flecha hacia arriba para comenzar", cWidth/20, cHeight/4);
             cont.fill();
             cont.closePath();
@@ -110,7 +112,7 @@ function screen1()
         cont.fillText("Perdiste :(", cWidth/2, cHeight/5);
         cont.fillText("Tu puntaje es: "+ punt, cWidth/2, (cHeight/5)*2);
         cont.fillText("Presiona la barra espaciadora para reiniciar", cWidth/2, (cHeight/5)*3);
-        cont.fillText("Presiona Escape o Q para volver al menú", cWidth/2, (cHeight/5)*4);
+        cont.fillText("Presiona Q para volver al menú", cWidth/2, (cHeight/5)*4);
         cont.fill();
         cont.closePath();
     }
@@ -265,69 +267,3 @@ function score() {
         console.log(multiplier);
     }
 }
-//Eventos que controlan el movimiento y algunas mecánicas del juego 
-document.querySelector("body").addEventListener("keydown", (event)=>{
-    if(state==1)
-    {
-        if(event.key==="A"||event.key==="a"||event.key==="ArrowLeft")
-        {
-            if((posX+kX)>0)
-            {
-                kX-=10;
-            }
-            else
-            {
-                posX=cWidth;
-                kX=0;
-            }
-        }
-        if(event.key==="D"||event.key==="d"||event.key==="ArrowRight")
-        {
-            if((posX+kX)<cWidth)
-            {
-                kX+=10;
-            }
-            else
-            {
-                posX=0;
-                kX=0;
-            }
-        }
-        //Únicamente al comienzo del juego se permite usar una tecla para saltar
-        if(start&&(event.key==="W"||event.key==="w"||event.key==="ArrowUp"))
-        {
-            start=false;
-            //Se inicia un intervalo que suma puntos por cada 5 segundos que vivas
-            scoring=setInterval(() => {
-                punt+=15;
-                console.log("puntear");
-            }, 5000);
-            jump(true);
-        }
-    }
-    //Una vez que has perdido, se puede reinciar el juego o volver al menú
-    else
-    {
-        if(event.key===" ")
-        {
-            clearInterval(scoring);
-            plats[0].move(true, 0, cHeight, cWidth);
-            plats[1].move(true, 1, cHeight, cWidth);
-            plats[2].move(true, 2, cHeight, cWidth);
-            plats[3].move(true, 3, cHeight, cWidth);
-            plats[4].move(true, 4, cHeight, cWidth);
-            plats[5].move(true, 5, cHeight, cWidth);
-            plats[6].move(true, 6, cHeight, cWidth);
-            plats[7].move(true, 7, cHeight, cWidth);
-            kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
-            i=0, change=0, state=1, direction=0, start=true, punt=0, change=false;
-
-        }
-        if(event.key==="Escape"||event.key==="q"||event.key==="Q")
-        {
-            clearInterval(scoring);
-            window.location.reload();
-            return 0;
-        }
-    }
-})

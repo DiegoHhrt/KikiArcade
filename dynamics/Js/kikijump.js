@@ -145,9 +145,8 @@ window.addEventListener("load", ()=>{
         requestAnimationFrame(draw);
     }
 
-    //detecta todos las teclas precionadas
+    //detecta todos las teclas presionadas mientras no se esté dentro del juego
     document.querySelector("body").addEventListener("keydown", (e)=>{
-        console.log(e.key);
         //controles de la pantalla 0: menu
         if(pantalla == 0)
         {
@@ -191,15 +190,83 @@ window.addEventListener("load", ()=>{
                 }
             }
         }
+        //Eventos que controlan el movimiento y algunas mecánicas del juego 
+        else if(pantalla==1)
+        {
+            if(state==1)
+            {
+                if(e.key==="A"||e.key==="a"||e.key==="ArrowLeft")
+                {
+                    if((posX+kX)>0)
+                    {
+                        kX-=10;
+                    }
+                    else
+                    {
+                        posX=cWidth;
+                        kX=0;
+                    }
+                }
+                if(e.key==="D"||e.key==="d"||e.key==="ArrowRight")
+                {
+                    if((posX+kX)<cWidth)
+                    {
+                        kX+=10;
+                    }
+                    else
+                    {
+                        posX=0;
+                        kX=0;
+                    }
+                }
+                //Únicamente al comienzo del juego se permite usar una tecla para saltar
+                if(start&&(e.key==="W"||e.key==="w"||e.key==="ArrowUp"))
+                {
+                    start=false;
+                    //Se inicia un intervalo que suma puntos por cada 5 segundos que vivas
+                    scoring=setInterval(() => {
+                        punt+=15;
+                        console.log("puntear");
+                    }, 5000);
+                    jump(true);
+                }
+            }
+            //Una vez que has perdido, se puede reinciar el juego o volver al menú
+            else
+            {
+                if(e.key===" ")
+                {
+                    clearInterval(scoring);
+                    plats[0].move(true, 0, cHeight, cWidth);
+                    plats[1].move(true, 1, cHeight, cWidth);
+                    plats[2].move(true, 2, cHeight, cWidth);
+                    plats[3].move(true, 3, cHeight, cWidth);
+                    plats[4].move(true, 4, cHeight, cWidth);
+                    plats[5].move(true, 5, cHeight, cWidth);
+                    plats[6].move(true, 6, cHeight, cWidth);
+                    plats[7].move(true, 7, cHeight, cWidth);
+                    kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
+                    i=0, change=0, state=1, direction=0, start=true, punt=0, change=false;
+
+                }
+                if(e.key==="q"||e.key==="Q")
+                {
+                    clearInterval(scoring);
+                    window.location.reload();
+                    window.location="../templates/kikijump.html";
+                    return 0;
+                }
+            }
+        }
         //conroles de la segunda vista
-        if(pantalla == 2)
+        else if(pantalla == 2)
         {
             if(e.key == "Escape")
             {
                 pantalla = 0;
             }
         }
-        if(pantalla == 3)
+        else if(pantalla == 3)
         {
             if(e.key == "Escape")
             {
