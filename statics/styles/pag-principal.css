@@ -2,7 +2,9 @@
 .card{
     border-radius: 1em;
     font-size: 15px;
-    background-color: #999999;
+    background: rgba(206,19,199,1);
+    background: linear-gradient(0deg, rgba(11,7,210,1) 0%, rgba(206,19,199,1) 100%);
+    color: white;
 }
  /*=Dibujo figura que será animada-------------*/   
 #cabeza{

@@ -1,63 +1,32 @@
 color1 = document.getElementById("rojo")
 color2 = document.getElementById("azul")
 fondo =document.getElementById("body")
-let p;
 a=document.getElementsByTagName("A")
 desplegable=document.getElementsByClassName("nav-link")
 boton =document.getElementById("boton")
+nav=document.getElementsByClassName("navbar")
 
 
 color1.addEventListener("click", ()=>{
-    titulo.style.color="#0704A9"
-    fondo.style.color="#0704A9"
-    a[0].style.color="#0704A9"
-    for(let i=0; i< desplegable.length; i++){
-        desplegable[i].style.color="#0704A9"
+    fondo.style.background= "D90000"
+    fondo.style.background= "linear-gradient(90deg, #D90000 0%, #CC7004 100%)"
+    fondo.style.color="#CCFF00"
+    a[0].style.color="#CCFF00"
+    for(let i=0; i<4; i++){
+        desplegable[i].style.color="#000000"
     }
-    boton.style.backgroundColor="#0704A9";
-    fondo.style.backgroundColor=" #AC0404"
-    p=document.cookie="pantalla=rojo"
-    galleta=p.split("=")
-    console.log(galleta)
+    boton.style.backgroundColor="#CCFF00"
+    nav[0].style.backgroundColor="#BF0000"
 })
 
 color2.addEventListener("click", ()=>{
-    titulo.style.color="#D20404"
-    a[0].style.color="#D20404"
-    for(let i=0; i< desplegable.length; i++){
-    desplegable[i].style.color="#D20404"
+    fondo.style.background= "#0b07d2"
+    fondo.style.background= "linear-gradient(90deg, #0b07d2 0%, #ce13c7 100%)"
+    fondo.style.color="#B80202"
+    a[0].style.color="#B80202"
+    boton.style.backgroundColor="#CE1313"
+    nav[0].style.backgroundColor="#110DA8"
+    for(let i=0; i<4; i++){
+        desplegable[i].style.color="#cecece"
     }
-    boton.style.backgroundColor="#D20404"
-    fondo.style.backgroundColor=" #050368"
-    fondo.style.color="#D20404"
-    p=document.cookie="pantalla=azul"
-    galleta=p.split("=")
-    console.log(galleta)
 })
-if(galleta=="rojo"){
-    titulo.style.color="#0704A9"
-    fondo.style.color="#0704A9"
-    a[0].style.color="#0704A9"
-    for(let i=0; i< desplegable.length; i++){
-        desplegable[i].style.color="#0704A9"
-    }
-    boton.style.backgroundColor="#0704A9";
-    fondo.style.backgroundColor=" #AC0404"
-    p=document.cookie="pantalla=rojo"
-    galleta=p.split("=")
-    console.log(galleta)
-}
-if(galleta=="azul"){
-    titulo.style.color="#D20404"
-    a[0].style.color="#D20404"
-    for(let i=0; i< desplegable.length; i++){
-    desplegable[i].style.color="#D20404"
-    }
-    boton.style.backgroundColor="#D20404"
-    fondo.style.backgroundColor=" #050368"
-    fondo.style.color="#D20404"
-    p=document.cookie="pantalla=azul"
-    galleta=p.split("=")
-    console.log(galleta)
-}
- 

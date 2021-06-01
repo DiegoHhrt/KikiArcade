@@ -7,32 +7,39 @@
 /*=Cuerpo --------------------------------------*/
 body{
     font-family: Press, fantasy;
-    color: #D20404;
-    background-color: #050368;
+    color: #B80202;
+    background: #0b07d2;
+    background: linear-gradient(90deg, #0b07d2 0%, #ce13c7 100%);
 }
 h1{
-    position: absolute;
-    left: 30%;
+    text-align: center;
 }
-
-
 /*=Barra de Navegación --------------------------------------*/
 nav{
-    background-color: #999999;
+    background-color: #110DA8;
 }
-a, a:hover, .nav-link{
-    color: #D20404;
+a, a:hover{
+    color: #B80202;
+    text-decoration: none;
+}
+.nav-link{
+    color: #cecece;
     text-decoration: none;
 }
 .nav-link:hover, .nav-link:focus, #navbarDropdown:focus{
     color: #ff4d4d;
     text-decoration: none;
 }
-#rojo, #boton{
-    background-color: #D20404;
+ #boton{
+    background-color: #CE1313;
+}
+#rojo{
+    background: rgb(255,64,64);
+    background: linear-gradient(90deg, rgba(255,64,64,1) 0%, rgba(243,131,0,1) 100%);
 }
 #azul{
-    background-color: #050368;
+    background: rgb(11,7,210);
+    background: linear-gradient(90deg, rgba(11,7,210,1) 0%, rgba(206,19,199,1) 100%);
     color: gray;
 }
 #azul:active{
