@@ -25,11 +25,12 @@ class Platform{
                 return pYellow;
         }
     }
-    move (activate=false)
+    move (activate=false, co, cHe, cWi)
     {
         if(activate)
         {
-            
+            this.pY = ((cHe/8)*co)+ Math.round(Math.random()*(cHe/16));
+            this.pX = Math.round(Math.random()*(cWi - this.Wi));
         }
     }
 }
@@ -66,7 +67,7 @@ function generatePl()
     while(plats.length<8)
     {
         plats.push(new Platform(cWidth, cHeight, c));
-        ++c;
+        c++;
     }
 
 }
@@ -108,7 +109,7 @@ function screen1()
     }
     cont.closePath();
 }
-//En esta función se dibujan las imágenes
+//Se controla cómo se dibujan las imágenes
 function img (x, y)
 {
     //Game platforms
@@ -121,6 +122,19 @@ function img (x, y)
     cont.drawImage(plats[6].Img, plats[6].pX, plats[6].pY, plats[6].Wi, plats[6].He);
     cont.drawImage(plats[7].Img, plats[7].pX, plats[7].pY, plats[7].Wi, plats[7].He);
     //Kiki img
+    if(posY+y<=10)
+    {
+        plats[0].move(true, 0, cHeight, cWidth);
+        plats[1].move(true, 1, cHeight, cWidth);
+        plats[2].move(true, 2, cHeight, cWidth);
+        plats[3].move(true, 3, cHeight, cWidth);
+        plats[4].move(true, 4, cHeight, cWidth);
+        plats[5].move(true, 5, cHeight, cWidth);
+        plats[6].move(true, 6, cHeight, cWidth);
+        plats[7].move(true, 7, cHeight, cWidth);
+        posY=cHeight-cHeight/5;
+        kY=0;
+    }
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
 }
 //Función que controlan las colisiones
