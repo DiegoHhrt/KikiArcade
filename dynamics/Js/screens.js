@@ -82,6 +82,12 @@ function screen1()
         collision();
         img(kX,kY);  
         score();    
+        cont.beginPath();
+            cont.fillStyle="#000000";
+            cont.font = "20px sans-serif";
+            cont.fillText("Score: "+ punt, 20, cHeight/20);
+            cont.fill();
+        cont.closePath();
         if(start)
         {
             cont.beginPath();
