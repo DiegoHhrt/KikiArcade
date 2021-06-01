@@ -1,7 +1,7 @@
 window.addEventListener("load", ()=>{
     var canvas = document.getElementById("pantalla");
     var ctx = canvas.getContext("2d");
-    var pantalla = 1;
+    var pantalla = 0;
 
     function fondo()
     {
