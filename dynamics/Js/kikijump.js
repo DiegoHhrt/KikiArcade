@@ -1,5 +1,5 @@
 window.addEventListener("load", ()=>{
-    var canvas = document.getElementById("pantalla");
+    var canvas = document.getElementById("screen");
     var ctx = canvas.getContext("2d");
     var pantalla = 0;
     var opcion = 1;
@@ -42,25 +42,25 @@ window.addEventListener("load", ()=>{
             ctx.textAlign = "center";
             ctx.strokeText("Kiki Jump", canvas.width/2, 50);
             ctx.beginPath();
-                ctx.rect(300,300,200,50);
+                ctx.rect(canvas.width/4,canvas.height/4,canvas.width/2,50);
                 ctx.fillStyle = "#E7F543";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Jugar", 400, 335);
+                ctx.strokeText("Jugar", canvas.width/2, (canvas.width/4)+60);
             ctx.closePath();
             ctx.beginPath();
-                ctx.rect(300,400,200,50);
+                ctx.rect(canvas.width/4,(canvas.height/4)*2,canvas.width/2,50);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Como se juega", 400, 435);
+                ctx.strokeText("Como se juega", canvas.width/2, ((canvas.width/4)*2)+80);
             ctx.closePath();
             ctx.beginPath();
-                ctx.rect(300,500,200,50);
+                ctx.rect(canvas.width/4,(canvas.height/4)*3,canvas.width/2,50);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Puntaje", 400, 535);
+                ctx.strokeText("Puntaje", canvas.width/2, ((canvas.width/4)*3)+110);
             ctx.closePath();
         }
         //si la opcion es 2 la segunda casilla aparece remarcada
@@ -70,25 +70,25 @@ window.addEventListener("load", ()=>{
             ctx.textAlign = "center";
             ctx.strokeText("Kiki Jump", canvas.width/2, 50);
             ctx.beginPath();
-                ctx.rect(300,300,200,50);
+                ctx.rect(canvas.width/4,canvas.height/4,canvas.width/2,50);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Jugar", 400, 335);
+                ctx.strokeText("Jugar", canvas.width/2, (canvas.width/4)+60);
             ctx.closePath();
             ctx.beginPath();
-                ctx.rect(300,400,200,50);
+                ctx.rect(canvas.width/4,(canvas.height/4)*2,canvas.width/2,50);
                 ctx.fillStyle = "#E7F543";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Como se juega", 400, 435);
+                ctx.strokeText("Como se juega", canvas.width/2, ((canvas.width/4)*2)+80);
             ctx.closePath();
             ctx.beginPath();
-                ctx.rect(300,500,200,50);
+                ctx.rect(canvas.width/4,(canvas.height/4)*3,canvas.width/2,50);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Puntaje", 400, 535);
+                ctx.strokeText("Puntaje", canvas.width/2, ((canvas.width/4)*3)+110);
             ctx.closePath();
         }
         if(opcion == 3)
@@ -97,25 +97,25 @@ window.addEventListener("load", ()=>{
             ctx.textAlign = "center";
             ctx.strokeText("Kiki Jump", canvas.width/2, 50);
             ctx.beginPath();
-                ctx.rect(300,300,200,50);
+                ctx.rect(canvas.width/4,canvas.height/4,canvas.width/2,50);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Jugar", 400, 335);
+                ctx.strokeText("Jugar", canvas.width/2, (canvas.width/4)+60);
             ctx.closePath();
             ctx.beginPath();
-                ctx.rect(300,400,200,50);
+                ctx.rect(canvas.width/4,(canvas.height/4)*2,canvas.width/2,50);
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Como se juega", 400, 435);
+                ctx.strokeText("Como se juega", canvas.width/2, ((canvas.width/4)*2)+80);
             ctx.closePath();
             ctx.beginPath();
-                ctx.rect(300,500,200,50);
+                ctx.rect(canvas.width/4,(canvas.height/4)*3,canvas.width/2,50);
                 ctx.fillStyle = "#E7F543";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Puntaje", 400, 535);
+                ctx.strokeText("Puntaje", canvas.width/2, ((canvas.width/4)*3)+110);
             ctx.closePath();
         }
     }
@@ -128,12 +128,16 @@ window.addEventListener("load", ()=>{
             fondo();
             casillamenu();
         }
-        if(pantalla == 2)
+        else if (pantalla==1)
+        {
+            pantalla = screen1();
+        }
+        else if(pantalla == 2)
         {
             fondo();
             instrucciones();
         }
-        if(pantalla == 3)
+        else if(pantalla == 3)
         {
             fondo();
             /*#####Falta poner aqui los puntajes#####*/
@@ -203,7 +207,6 @@ window.addEventListener("load", ()=>{
             }
         }
     })
-
     requestAnimationFrame(draw);
     
 })
