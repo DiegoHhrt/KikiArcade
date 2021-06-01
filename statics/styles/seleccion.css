@@ -42,3 +42,18 @@ h2{
     background: #D90000;
     background: linear-gradient(90deg, #D90000 0%, #CC7004 100%);
 }
+
+@media screen and (max-width: 900px){
+    div{
+        height: 50%;
+        width: 100%;
+    }
+    #atardecer{
+        left: 0%;
+        top: 50%;
+    }
+    #azul, #rojo{
+        top: 28%;
+    }
+       
+}
