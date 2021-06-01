@@ -40,7 +40,7 @@ var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 var numP=Math.round(Math.random()*9)+1;
 var plats = [];
-var i=0, change=0, down, up, state=1, direction=0, start=true, punt=0, change=false;
+var i=0, change=0, down, up, state=1, direction=0, start=true, punt=0, change=false, countCookie=0;;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
@@ -52,6 +52,21 @@ var pGreen=new Image();
 
 loadImg();
 generatePl();
+//Se obtiene el nombre actual del usuario
+function cookieName (name) 
+{
+    let cookies = document.cookie;
+    let cookieArray = cookies.split("; ");
+    for (let value of cookieArray)
+    {
+        let cookie=value.split("=");
+        if(cookie[0]===name)
+        {
+            return cookie[1];
+        }
+    }
+    return false;
+}
 //Función que inicializa los objetos imágen que contienen la ruta a las plataformas
 function loadImg () {
     pPurple.src="../statics/Images/pPurple.png";
@@ -250,8 +265,26 @@ function fall() {
             }
         }, 1);
 }
-//controla si el juego se ha perdido o no 
+//controla si el juego se ha perdido o no, asigna el valor a las cookies de puntaje
 function loosing () {
+    let fecha = new Date();
+    fecha.setTime(fecha.getTime()+(1*1000*60*60*24*7))
+    let usr= cookieName("nombre");
+    if(!usr)
+    {
+        usr="Sin Nombre";
+    }
+    if(!cookieName(usr+","+countCookie))
+    {
+        document.cookie=usr+","+countCookie+"="+punt+", Jump; expires="+fecha.toGMTString();
+
+    }
+    else
+    {
+        console.log("exists");
+        countCookie++;
+        loosing();
+    }
     state=0;
     clearInterval(scoring);
     clearInterval(up);
