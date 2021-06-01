@@ -40,7 +40,7 @@ var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 var numP=Math.round(Math.random()*9)+1;
 var plats = [];
-var i=0, change=0, down, up, state=1, direction=0, start=true;
+var i=0, change=0, down, up, state=1, direction=0, start=true, punt=0, change=false;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
@@ -52,7 +52,6 @@ var pGreen=new Image();
 
 loadImg();
 generatePl();
-jump();
 //Función que inicializa los objetos imágen que contienen la ruta a las plataformas
 function loadImg () {
     pPurple.src="../statics/Images/pPurple.png";
@@ -81,7 +80,8 @@ function screen1()
         cont.fillStyle = "#00b4c4";
         cont.fill();
         collision();
-        img(kX,kY);      
+        img(kX,kY);  
+        score();    
         if(start)
         {
             cont.beginPath();
@@ -101,13 +101,15 @@ function screen1()
             cont.font = "25px sans-serif";
             cont.fillStyle="#6bffa6";
             cont.textAlign="center";
-            cont.fillText("Perdiste :(", cWidth/2, cHeight/4);
-            cont.fillText("Tu puntaje es: 500", cWidth/2, cHeight/2);
-            cont.fillText("Presiona cualquier tecla para reiniciar", cWidth/2, (cHeight/4)*3);
+            cont.fillText("Perdiste :(", cWidth/2, cHeight/5);
+            cont.fillText("Tu puntaje es: "+ punt, cWidth/2, (cHeight/5)*2);
+            cont.fillText("Presiona la barra espaciadora para reiniciar", cWidth/2, (cHeight/5)*3);
+            cont.fillText("Presiona Escape o Q para volver al menú", cWidth/2, (cHeight/5)*4);
             cont.fill();
         cont.closePath();
     }
     cont.closePath();
+    return 1;
 }
 //Se controla cómo se dibujan las imágenes
 function img (x, y)
@@ -121,7 +123,7 @@ function img (x, y)
     cont.drawImage(plats[5].Img, plats[5].pX, plats[5].pY, plats[5].Wi, plats[5].He);
     cont.drawImage(plats[6].Img, plats[6].pX, plats[6].pY, plats[6].Wi, plats[6].He);
     cont.drawImage(plats[7].Img, plats[7].pX, plats[7].pY, plats[7].Wi, plats[7].He);
-    //Kiki img
+    //En caso de alcanzar el borde superior de la pantalla de juego, se reacomodan las plataformas existentes y la posición de kiki se reestablece al fondo de la pantalla
     if(posY+y<=10)
     {
         plats[0].move(true, 0, cHeight, cWidth);
@@ -134,10 +136,12 @@ function img (x, y)
         plats[7].move(true, 7, cHeight, cWidth);
         kY=0;
         posY=cHeight-10;
+        change=true;
         clearInterval(down);
         clearInterval(up);
         jump(true, true);
     }
+    //Kiki img
     cont.drawImage(kikiSprite, posX+x, (posY+y)-kikiSprite.height, cWidth/8, cWidth/8);
 }
 //Función que controlan las colisiones
@@ -210,11 +214,12 @@ function jump(col, transition) {
                 kY-=4.5;
             }
             j+=4.5;
+            //En caso de tratarse de una transición la altura del salto se reduce ligeramente antes de caer
             if(transition&&j>=cHeight/4)
             {
                 fall();
-                console.log("transition");
             }
+            //Distancia que recorre un salto antes de empezar a caer
             else if(j>=cHeight/3)
             {
                 fall();
@@ -240,8 +245,19 @@ function fall() {
 //controla si el juego se ha perdido o no 
 function loosing () {
     state=0;
+    clearInterval(scoring);
     clearInterval(up);
     clearInterval(down);
+}
+//Además de los puntos que ganas con cada segundo que vivas, se te añade un bonus por cada nueva capa del mundo
+function score() {
+    if(change)
+    {
+        let multiplier=Math.random();
+        punt+=Math.round((100)*(1+multiplier));
+        change=false; 
+        console.log(multiplier);
+    }
 }
 //Eventos que controlan el movimiento y algunas mecánicas del juego 
 document.querySelector("body").addEventListener("keydown", (event)=>{
@@ -271,14 +287,29 @@ document.querySelector("body").addEventListener("keydown", (event)=>{
                 kX=0;
             }
         }
+        //Únicamente al comienzo del juego se permite usar una tecla para saltar
         if(start&&(event.key==="W"||event.key==="w"||event.key==="ArrowUp"))
         {
-            jump(true);
             start=false;
+            //Se inicia un intervalo que suma puntos por cada 5 segundos que vivas
+            scoring=setInterval(() => {
+                punt+=15;
+                console.log("puntear");
+            }, 5000);
+            jump(true);
         }
     }
+    //Una vez que has perdido, se puede reinciar el juego o volver al menú
     else
     {
-        window.location.reload();
+        if(event.key===" ")
+        {
+            window.location.reload();
+        }
+        if(event.key==="Escape"||event.key==="q"||event.key==="Q")
+        {
+            clearInterval(scoring);
+            return 0;
+        }
     }
 })

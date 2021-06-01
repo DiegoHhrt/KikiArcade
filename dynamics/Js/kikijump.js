@@ -31,7 +31,7 @@ window.addEventListener("load", ()=>{
         }
         else if (pantalla==1)
         {
-            screen1();
+            pantalla = screen1();
         }
         requestAnimationFrame(draw);
     }
