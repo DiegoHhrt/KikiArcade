@@ -310,11 +310,23 @@ document.querySelector("body").addEventListener("keydown", (event)=>{
     {
         if(event.key===" ")
         {
-            window.location.reload();
+            clearInterval(scoring);
+            plats[0].move(true, 0, cHeight, cWidth);
+            plats[1].move(true, 1, cHeight, cWidth);
+            plats[2].move(true, 2, cHeight, cWidth);
+            plats[3].move(true, 3, cHeight, cWidth);
+            plats[4].move(true, 4, cHeight, cWidth);
+            plats[5].move(true, 5, cHeight, cWidth);
+            plats[6].move(true, 6, cHeight, cWidth);
+            plats[7].move(true, 7, cHeight, cWidth);
+            kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
+            i=0, change=0, state=1, direction=0, start=true, punt=0, change=false;
+
         }
         if(event.key==="Escape"||event.key==="q"||event.key==="Q")
         {
             clearInterval(scoring);
+            window.location.reload();
             return 0;
         }
     }
