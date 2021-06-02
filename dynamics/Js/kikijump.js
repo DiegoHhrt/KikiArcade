@@ -49,7 +49,7 @@ window.addEventListener("load", ()=>{
                 ctx.fillStyle = "#E7F543";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Jugar", canvas.width/2, (canvas.width/4)+60);
+                ctx.strokeText("Enter para jugar", canvas.width/2, (canvas.width/4)+60);
             ctx.closePath();
             ctx.beginPath();
                 ctx.rect(canvas.width/4,(canvas.height/4)*2,canvas.width/2,50);

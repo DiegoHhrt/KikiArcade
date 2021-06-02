@@ -16,16 +16,17 @@
     </nav>
     <div id="baya">
         <h2>escoja este tono</h2>
-        <input type="submit"value="baya" id="azul">
+        <input type="submit"value="baya" tabindex="0" id="azul">
         <form action="./templates/Menu.html">
-            <h3>Ingrese su nombre para guardar su puntaje!</h3>
-            <input type="text" id="nombre">
-            <input type="submit" value="enviar">
+            <h3 >Ingrese su nombre para guardar su puntaje!</h3>
+            <label for="nombre" class="form-label">First name</label>
+                <input type="text" class="form-control is-invalid" tabindex="0" id="nombre" required>
+            <input type="submit"  tabindex="0" value="enviar">
         </form>
     </div>
     <div id=atardecer>
         <h2> O escoja este tono</h2>
-        <input type="submit" value="atardecer" id=rojo>
+        <input type="submit" tabindex="0" value="atardecer" id=rojo>
     </div>
     <script src="libs/bootstrap-5.0.1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="./dynamics/Js/seleccion.js"></script>
