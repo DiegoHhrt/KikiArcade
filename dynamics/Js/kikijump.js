@@ -351,7 +351,7 @@ window.addEventListener("load", ()=>{
                 {
                     clearInterval(scoring);
                     window.location.reload();
-                    window.location="../templates/kikijump.html";
+                    window.location="../templates/menu.html";
                     return 0;
                 }
             }

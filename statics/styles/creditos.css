@@ -1,3 +1,6 @@
 .row{
     color: black;
 }
+i, h3{
+    margin-left: 15 px;
+}
