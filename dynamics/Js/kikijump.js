@@ -125,7 +125,7 @@ window.addEventListener("load", ()=>{
         //Función que despliega los puntajes
         function pointsDisplay()
         {
-            if(maxDisplay<=9)
+            if(maxDisplay<15)
             {
                 let decompose, separate;
                 decompose=scores[maxDisplay].split(",");
