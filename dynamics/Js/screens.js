@@ -50,19 +50,32 @@ var pYellow=new Image();
 var pRed=new Image();
 var pGreen=new Image();
 
+//Llamadas a funciones que se requieren antes de ejecutar el juego
 loadImg();
 generatePl();
-//Se obtiene el nombre actual del usuario
-function cookieName (name) 
+var usr= cookieName("nombre");
+if(!usr)
+{
+    usr="Sin Nombre";
+}
+//Se manejan cookies existentes
+function cookieName (name, display=false) 
 {
     let cookies = document.cookie;
     let cookieArray = cookies.split("; ");
     for (let value of cookieArray)
     {
-        let cookie=value.split("=");
-        if(cookie[0]===name)
+        if(!display)
         {
-            return cookie[1];
+            let cookie=value.split("=");
+            if(cookie[0]===name)
+            {
+                return cookie[1];
+            }
+        }
+        else
+        {
+            return cookieArray;
         }
     }
     return false;
@@ -269,11 +282,6 @@ function fall() {
 function loosing () {
     let fecha = new Date();
     fecha.setTime(fecha.getTime()+(1*1000*60*60*24*7))
-    let usr= cookieName("nombre");
-    if(!usr)
-    {
-        usr="Sin Nombre";
-    }
     if(!cookieName(usr+","+countCookie))
     {
         document.cookie=usr+","+countCookie+"="+punt+", Jump; expires="+fecha.toGMTString();
