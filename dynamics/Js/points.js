@@ -46,90 +46,20 @@ while(maxDisplay<15)
     maxDisplay++;
 }
 
-let i=0;
-while(i<15)
+for(i=0;i<15;i++)
 {
     if(user[i]&&game[i]&&points[i])
     {
         let jump=document.querySelector("#jump")
         jump.innerHTML+="<br><br>"
-        let toAdd = jump.innerText+=game[i]+" "+user[i]+":"+points[i]+" puntos";
-        jumpDisplay.prepend(toAdd);
+        jump.innerText+=game[i]+" "+user[i]+":"+points[i]+" puntos";
+        //jumpDisplay.prepend(toAdd);
     }
-    i++;
+    else
+    {
+        let jump=document.querySelector("#jump")
+        jump.innerHTML+="<br><br>"
+        jump.innerText+="Sin puntaje";
+        //jumpDisplay.prepend(toAdd);
+    }
 }
-            // ctx.beginPath();
-            // ctx.fillStyle="#000000"
-            // ctx.textAlign="center"
-            //     if(user[0]&&points[0])
-            //     {
-            //         ctx.fillText(user[0]+":"+points[0], canvas.width/2, (canvas.height/10));
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10));
-            //     }
-            //     if(user[1]&&points[1])
-            //     {
-            //         ctx.fillText(user[1]+":"+points[1], canvas.width/2, (canvas.height/10)*2);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*2);
-            //     }
-            //     if(user[2]&&points[2])
-            //     {
-            //         ctx.fillText(user[2]+":"+points[2], canvas.width/2, (canvas.height/10)*3);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*3);
-            //     }
-            //     if(user[3]&&points[3])
-            //     {
-            //         ctx.fillText(user[3]+":"+points[3], canvas.width/2, (canvas.height/10)*4);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*4);
-            //     }
-            //     if(user[4]&&points[4])
-            //     {
-            //         ctx.fillText(user[4]+":"+points[4], canvas.width/2, (canvas.height/10)*5);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*5);
-            //     }
-            //     if(user[5]&&points[5])
-            //     {
-            //         ctx.fillText(user[5]+":"+points[5], canvas.width/2, (canvas.height/10)*6);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*6);
-            //     }
-            //     if(user[6]&&points[6])
-            //     {
-            //         ctx.fillText(user[6]+":"+points[6], canvas.width/2, (canvas.height/10)*7);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*7);
-            //     }
-            //     if(user[7]&&points[7])
-            //     {
-            //         ctx.fillText(user[7]+":"+points[7], canvas.width/2, (canvas.height/10)*8);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*8);
-            //     }
-            //     if(user[8]&&points[8])
-            //     {
-            //         ctx.fillText(user[8]+":"+points[8], canvas.width/2, (canvas.height/10)*9);
-            //     }
-            //     else
-            //     {
-            //         ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*9);
-            //     }
