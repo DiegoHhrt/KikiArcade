@@ -6,6 +6,9 @@
     background: linear-gradient(0deg, rgba(11,7,210,1) 0%, rgba(206,19,199,1) 100%);
     color: white;
 }
+#btn1:active, #btn1:focus,#btn2:active, #btn2:focus{
+    background-color: palevioletred;
+}
  /*=Dibujo figura que será animada-------------*/   
 #cabeza{
     border: 1px solid black;
