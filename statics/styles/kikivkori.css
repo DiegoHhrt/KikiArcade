@@ -44,10 +44,18 @@ html, body{
     top: 25%;
 }
 
+#play:hoover{
+    cursor: pointer;
+}
+
 #controles{
     position: relative;
     left: 25%;
     top: 50%;
+}
+
+#controles:hoover{
+    cursor: pointer;
 }
 
 .rampa{
