@@ -8,6 +8,7 @@ window.addEventListener('load', ()=>{
     let fin = false;
     let accion = false;
     let puntos = 0;
+    let salto = false;
 
     class Barril{
       constructor(X, Y) {
@@ -49,7 +50,7 @@ window.addEventListener('load', ()=>{
 
     function logicaBaril()
     {
-      console.log("entro");
+      //console.log("entro");
       if(barril === false)
       {
         console.log("entro");
@@ -66,6 +67,15 @@ window.addEventListener('load', ()=>{
       {
         for(let i=0; i<nivel; i++)
         {
+          if(barriles[i].posicionX <= posicionX+5 && barriles[i].posicionX >= posicionX-5)
+          {
+            if(barriles[i].posicionY <= (100-posicionY+5) && barriles[i].posicionY >= (100-posicionY-5))
+            {
+              jugando = false;
+              pantalla.innerHTML = "<h1 id='perdiste'>Perdiste<h1><h1 id='resultados'>Puntaje:"+puntos+"<h1>";
+              clearInterval();
+            }
+          }
           if(barriles[i].posicionX < 90 && barriles[i].dirrecion == 0)
           {
             barriles[i].avanzar();
@@ -90,14 +100,10 @@ window.addEventListener('load', ()=>{
           }
           document.querySelector("#barril"+i).style.left = barriles[i].posicionX + "%";
           document.querySelector("#barril"+i).style.top = barriles[i].posicionY + "%";
-          if(barriles[i].posicionX <= posicionX+5 && barriles[i].posicionX >= posicionX-5)
-          {
-            if(barriles[i].posicionY <= (100-posicionY+5) && barriles[i].posicionY >= (100-posicionY-5))
-            {
-              jugando = false;
-              pantalla.innerHTML = "<h1 id='perdiste'>Perdiste<h1><h1 id='resultados'>Puntaje:"+puntos+"<h1>";
-            }
-          }
+          console.log(barriles[i].posicionX);
+          console.log("X:"+posicionX);
+          console.log(barriles[i].posicionY);
+          console.log("Y:"+posicionY);
           if(barriles[i].posicionY > 90)
           {
             barril = false;
@@ -147,7 +153,7 @@ window.addEventListener('load', ()=>{
         posicionY = parseFloat(valor[0]);
         //console.log(posicionY);
       }
-      if(e.key == "d")
+      if(e.key == "d" && salto == false)
       {
         posicionX += 1;
         if(posicionY != 0)
@@ -160,7 +166,7 @@ window.addEventListener('load', ()=>{
           kiki.style.left = posicionX + "%";
         }
       }
-      else if(e.key == "a")
+      else if(e.key == "a" && salto == false)
       {
         posicionX -= 1;
         if(posicionY != 0)
@@ -175,13 +181,13 @@ window.addEventListener('load', ()=>{
       }
       else if(e.key == " ")
       {
-        if(posicionX < 10 || posicionX > 90)
+        if(posicionX < 5 || posicionX > 95)
         {
-          if(posicionX < 10 && (posicionY != 0 && posicionY != 20 && posicionY != 40))
+          if(posicionX < 5 && (posicionY != 0 && posicionY != 20 && posicionY != 40))
           {
             posicionY += 15;
           }
-          if(posicionX > 90 && (posicionY != 10 && posicionY != 30 && posicionY != 50))
+          if(posicionX > 95 && (posicionY != 10 && posicionY != 30 && posicionY != 50))
           {
             if(posicionY == 0)
             {
@@ -206,12 +212,14 @@ window.addEventListener('load', ()=>{
           puntaje = document.getElementById("puntaje");
           puntaje.innerText = "Puntos:" + puntos;
         }
-        else if((posicionX>10 && posicionX<90) && posicionY != 0)
+        else if((posicionX > 10 && posicionX < 80) && posicionY != 0)
         {
-          kiki.style.bottom = (posicionY + 7) + "%"
+          kiki.style.bottom = (posicionY + 12) + "%"
+          salto = true;
           setTimeout(()=>{
             kiki.style.bottom = posicionY + "%";
-          },800)
+            salto = false;
+          },1000)
         }
       }
       if(jugando === true)
@@ -227,7 +235,7 @@ window.addEventListener('load', ()=>{
     controles.addEventListener("click", ()=>{
       pantalla.innerHTML = "<h1>Usar A y D para moverse y espacio para saltar</h1>";
       pantalla.innerHTML += "<br><h1>Kiki solo puede cambiar de plataforma estado la final de las mismas</h1>";
-      pantalla.innerHTML += "<br><h1>Kiki puede salltar los barriles</h1>";
+      pantalla.innerHTML += "<br><h1>Kiki puede saltar los barriles</h1>";
       pantalla.innerHTML += "<br><h1>AL cambiar de plataforma se te sumaran 100 pts y al llegar al final 500pts</h1>";
       pantalla.innerHTML += "<br><h1>Al llegar al final kiki regresara a la posicion incial pero se te sumaran los puntos</h1>";
     })

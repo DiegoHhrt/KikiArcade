@@ -260,7 +260,8 @@ function jump(col, transition) {
             {
                 fall();
             }
-        }, 1);
+        //Este valor de intervalo puede modificarse en caso de utilizar chrome
+        }, 15);
     }
 }
 //Controla la caída progresiva
@@ -276,7 +277,8 @@ function fall() {
             {
                 kY+=7;
             }
-        }, 1);
+        //Este valor de intervalo puede modificarse en caso de utilizar chrome 
+        }, 15);
 }
 //controla si el juego se ha perdido o no, asigna el valor a las cookies de puntaje
 function loosing () {
