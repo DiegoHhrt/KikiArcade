@@ -40,7 +40,7 @@ var cont = can.getContext("2d");
 var cWidth=can.width, cHeight=can.height, kX=0, kY=0, posX=0, posY=cHeight, coordXinit=cWidth/2;
 var numP=Math.round(Math.random()*9)+1;
 var plats = [];
-var i=0, change=0, down, up, state=1, direction=0, start=true, punt=0, change=false;
+var i=0, change=0, down, up, state=1, direction=0, start=true, punt=0, change=false, countCookie=0;;
 
 var kikiSprite=new Image(cWidth/8, cWidth/8);
 kikiSprite.src = "../statics/Images/kikiSpriteV1.png";
@@ -50,8 +50,36 @@ var pYellow=new Image();
 var pRed=new Image();
 var pGreen=new Image();
 
+//Llamadas a funciones que se requieren antes de ejecutar el juego
 loadImg();
 generatePl();
+var usr= cookieName("nombre");
+if(!usr)
+{
+    usr="Sin Nombre";
+}
+//Se manejan cookies existentes
+function cookieName (name, display=false) 
+{
+    let cookies = document.cookie;
+    let cookieArray = cookies.split("; ");
+    for (let value of cookieArray)
+    {
+        if(!display)
+        {
+            let cookie=value.split("=");
+            if(cookie[0]===name)
+            {
+                return cookie[1];
+            }
+        }
+        else
+        {
+            return cookieArray;
+        }
+    }
+    return false;
+}
 //Función que inicializa los objetos imágen que contienen la ruta a las plataformas
 function loadImg () {
     pPurple.src="../statics/Images/pPurple.png";
@@ -250,8 +278,21 @@ function fall() {
             }
         }, 1);
 }
-//controla si el juego se ha perdido o no 
+//controla si el juego se ha perdido o no, asigna el valor a las cookies de puntaje
 function loosing () {
+    let fecha = new Date();
+    fecha.setTime(fecha.getTime()+(1*1000*60*60*24*7))
+    if(!cookieName(usr+","+countCookie))
+    {
+        document.cookie=usr+","+countCookie+"="+punt+", Jump; expires="+fecha.toGMTString();
+
+    }
+    else
+    {
+        console.log("exists");
+        countCookie++;
+        loosing();
+    }
     state=0;
     clearInterval(scoring);
     clearInterval(up);
