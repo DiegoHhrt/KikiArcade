@@ -24,6 +24,7 @@ a, a:hover{
 }
 .nav-link{
     color: #cecece;
+    cursor: pointer;
     text-decoration: none;
 }
 .nav-link:hover, .nav-link:focus, #navbarDropdown:focus{
@@ -32,6 +33,7 @@ a, a:hover{
 }
  #boton{
     background-color: #CE1313;
+    color: #cecece
 }
 #rojo{
     background: rgb(255,64,64);
