@@ -26,13 +26,16 @@ scores=cookieName(false, true);
 while(maxDisplay<15)
 {
     let decompose, separate;
-    decompose=scores[maxDisplay].split(",");
-
-    if(decompose.length>=4)
+    if(scores[maxDisplay])
+    {
+        decompose=scores[maxDisplay].split(",");
+    }
+    if(decompose&&decompose.length>=4)
     {
         user.push(decompose[0]);
         separate=decompose[1].split("=");
         points.push(separate[1]);
+        game.push(separate[2]);
     }
     maxDisplay++;
 }

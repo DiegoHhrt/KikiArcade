@@ -145,35 +145,35 @@ window.addEventListener("load", ()=>{
             ctx.textAlign="center"
                 if(user[0]&&points[0])
                 {
-                    ctx.fillText(user[0]+":"+points[0], canvas.width/2, (canvas.height/10));
+                    ctx.fillText(user[0]+":"+points[0], canvas.width/2, (canvas.height/10)*9);
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10));
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*9);
                 }
                 if(user[1]&&points[1])
                 {
-                    ctx.fillText(user[1]+":"+points[1], canvas.width/2, (canvas.height/10)*2);
+                    ctx.fillText(user[1]+":"+points[1], canvas.width/2, (canvas.height/10)*8);
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*2);
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*8);
                 }
                 if(user[2]&&points[2])
                 {
-                    ctx.fillText(user[2]+":"+points[2], canvas.width/2, (canvas.height/10)*3);
+                    ctx.fillText(user[2]+":"+points[2], canvas.width/2, (canvas.height/10)*7);
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*3);
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*7);
                 }
                 if(user[3]&&points[3])
                 {
-                    ctx.fillText(user[3]+":"+points[3], canvas.width/2, (canvas.height/10)*4);
+                    ctx.fillText(user[3]+":"+points[3], canvas.width/2, (canvas.height/10)*6);
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*4);
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*6);
                 }
                 if(user[4]&&points[4])
                 {
@@ -185,35 +185,35 @@ window.addEventListener("load", ()=>{
                 }
                 if(user[5]&&points[5])
                 {
-                    ctx.fillText(user[5]+":"+points[5], canvas.width/2, (canvas.height/10)*6);
+                    ctx.fillText(user[5]+":"+points[5], canvas.width/2, (canvas.height/10)*4);
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*6);
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*4);
                 }
                 if(user[6]&&points[6])
                 {
-                    ctx.fillText(user[6]+":"+points[6], canvas.width/2, (canvas.height/10)*7);
+                    ctx.fillText(user[6]+":"+points[6], canvas.width/2, (canvas.height/10)*3);
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*7);
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*3);
                 }
                 if(user[7]&&points[7])
                 {
-                    ctx.fillText(user[7]+":"+points[7], canvas.width/2, (canvas.height/10)*8);
+                    ctx.fillText(user[7]+":"+points[7], canvas.width/2, (canvas.height/10)*2);
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*8);
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*2);
                 }
                 if(user[8]&&points[8])
                 {
-                    ctx.fillText(user[8]+":"+points[8], canvas.width/2, (canvas.height/10)*9);
+                    ctx.fillText(user[8]+":"+points[8], canvas.width/2, (canvas.height/10));
                 }
                 else
                 {
-                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10)*9);
+                    ctx.fillText("Sin puntaje", canvas.width/2, (canvas.height/10));
                 }
                 ctx.fill()
             ctx.closePath();
