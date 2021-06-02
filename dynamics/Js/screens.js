@@ -247,9 +247,9 @@ function jump(col, transition) {
         up = setInterval(() => {
             if(posY+kY>=0)
             {
-                kY-=4.5;
+                kY-=12;
             }
-            j+=4.5;
+            j+=12;
             //En caso de tratarse de una transición la altura del salto se reduce ligeramente antes de caer
             if(transition&&j>=cHeight/4)
             {
@@ -260,7 +260,8 @@ function jump(col, transition) {
             {
                 fall();
             }
-        }, 1);
+        //Este valor del intervalo puede ser odificado en caso de utilizar Chrome
+        }, 50);
     }
 }
 //Controla la caída progresiva
@@ -274,9 +275,10 @@ function fall() {
             }
             else
             {
-                kY+=7;
+                kY+=14;
             }
-        }, 1);
+        //Este valor del intervalo puede ser odificado en caso de utilizar Chrome
+        }, 50);
 }
 //controla si el juego se ha perdido o no, asigna el valor a las cookies de puntaje
 function loosing () {
