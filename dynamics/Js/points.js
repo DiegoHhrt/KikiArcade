@@ -55,9 +55,18 @@ for(i=0;i<15;i++)
 {
     if(user[i]&&game[i]&&points[i])
     {
-        let jump=document.querySelector("#jump")
-        jump.innerHTML+="<br><br>"
-        jump.innerText+=game[i]+" "+user[i]+":"+points[i]+" puntos";
+        if(game[i] == "Kiki Jump:")
+        {
+            let jump=document.querySelector("#jump")
+            jump.innerHTML+="<br><br>"
+            jump.innerText+=game[i]+" "+user[i]+":"+points[i]+" puntos";
+        }
+        else
+        {
+            let kvk=document.querySelector("#kVKori");
+            jump.innerHTML+="<br><br>"
+            jump.innerText+=game[i]+" "+user[i]+":"+points[i]+" puntos";
+        }
         //jumpDisplay.prepend(toAdd);
     }
     else

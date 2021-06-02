@@ -167,23 +167,25 @@ window.addEventListener('load', ()=>{
 
     //comandos del juego
     document.querySelector("body").addEventListener("keydown", (e)=>{
-      let kiki = document.getElementById("kiki");
-      posicionX = kiki.style.left;
-      posicionY = kiki.style.bottom;
-      console.log("entro");
-      //checa rompe el style css si viene con %
-      if(posicionX.indexOf("%") != -1)
-      {
-        valor = posicionX.split("%");
-        posicionX = parseInt(valor[0]);
-      }
-      if(posicionY.indexOf("%") != -1)
-      {
-        valor = posicionY.split("%");
-        posicionY = parseFloat(valor[0]);
-      }
-      //si se presiona d
-      if(e.key == "d")
+    let kiki = document.getElementById("kiki");
+    posicionX = kiki.style.left;
+    posicionY = kiki.style.bottom;
+    console.log("entro");
+    //rompe el style css si viene con %
+    if(posicionX.indexOf("%") != -1)
+    {
+      valor = posicionX.split("%");
+      posicionX = parseInt(valor[0]);
+    }
+    if(posicionY.indexOf("%") != -1)
+    {
+      valor = posicionY.split("%");
+      posicionY = parseFloat(valor[0]);
+    }
+    //si se presiona d
+    if(e.key == "d")
+    {
+      if(salto == false)
       {
         posicionX += 1;
         //checa que este en el piso
@@ -198,8 +200,11 @@ window.addEventListener('load', ()=>{
           kiki.style.left = posicionX + "%";
         }
       }
-      //lo mismo pero con la letra a
-      else if(e.key == "a")
+    }
+    //lo mismo pero con la letra a
+    else if(e.key == "a")
+    {
+      if(salto == false)
       {
         posicionX -= 1;
         if(posicionY != 0)
@@ -212,63 +217,68 @@ window.addEventListener('load', ()=>{
           kiki.style.left = posicionX + "%";
         }
       }
-      //detecta el espacio
-      else if(e.key == " ")
+    }
+    //detecta el espacio
+    else if(e.key == " ")
+    {
+      //detecta cuando puede subir a otra plataforma
+      if(posicionX < 5 || posicionX > 95)
       {
-        //detecta cuando puede subir a otra plataforma
-        if(posicionX < 5 || posicionX > 95)
+        if(posicionX < 10 && (posicionY != 0 && posicionY != 20 && posicionY != 40) && posicionX > 0)
         {
-          if(posicionX < 5 && (posicionY != 0 && posicionY != 20 && posicionY != 40))
+          posicionY += 15;
+        }
+        if(posicionX > 95 && (posicionY != 10 && posicionY != 30 && posicionY != 50))
+        {
+          if(posicionY == 0)
           {
-            posicionY += 15;
+            posicionY += 10;
           }
-          if(posicionX > 95 && (posicionY != 10 && posicionY != 30 && posicionY != 50))
+          else
           {
-            if(posicionY == 0)
-            {
-              posicionY += 10;
-            }
-            else
-            {
-              posicionY += 15; 
-            }
+            posicionY += 15; 
           }
-          kiki.style.bottom = posicionY + "%";
-          puntos += 100;
-          puntaje = document.getElementById("puntaje");
-          puntaje.innerText = "Puntos:" + puntos;
         }
-        //detecta que llego al final de la pantalla y reinicia
-        if(posicionY >= 80)
-        {
-          kiki.style.left = "0%";
-          kiki.style.bottom = "0%";
-          barril = false;
-          puntos += 500;
-          puntaje = document.getElementById("puntaje");
-          puntaje.innerText = "Puntos:" + puntos;
-        }
-        //hace la animacion de salto
-        else if((posicionX > 10 && posicionX < 80) && posicionY != 0)
-        {
-          kiki.style.bottom = (posicionY + 12) + "%"
-          salto = true;
-          setTimeout(()=>{
-            kiki.style.bottom = posicionY + "%";
-            salto = false;
-          },1000)
-        }
+        kiki.style.bottom = posicionY + "%";
+        puntos += 100;
+        puntaje = document.getElementById("puntaje");
+        puntaje.innerText = "Puntos:" + puntos;
       }
-      //se llama la funcion de logica del barril aqui
-      if(jugando === true)
+      //detecta que llego al final de la pantalla y reinicia
+      if(posicionY >= 80)
       {
-        if(accion === false)
-        {
-          setInterval(logicaBaril, 50);
-          accion = true;
-        }
+        kiki.style.left = "0%";
+        kiki.style.bottom = "0%";
+        barril = false;
+        puntos += 500;
+        puntaje = document.getElementById("puntaje");
+        puntaje.innerText = "Puntos:" + puntos;
       }
-    })
+      //hace la animacion de salto
+      else if((posicionX > 5 && posicionX < 95) && posicionY != 0)
+      {
+        kiki.style.bottom = (posicionY + 12) + "%" 
+        yBeforeSalto=posicionY;
+        salto = true;
+        interSalto = setInterval(()=>{
+          kiki.style.bottom = yBeforeSalto + "%";
+          salto = false;
+        },1000)
+        setTimeout(()=>{
+          clearInterval(interSalto);
+        },1000)
+      }
+    }
+    //se llama la funcion de logica del barril aqui
+    if(jugando === true)
+    {
+      if(accion === false)
+      {
+        setInterval(logicaBaril, 50);
+        accion = true;
+      }
+    }
+  })
 
     //comandos del menu
     controles.addEventListener("click", ()=>{
