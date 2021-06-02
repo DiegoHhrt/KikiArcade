@@ -27,7 +27,7 @@ window.addEventListener("load", ()=>{
     {
         ctx.textAlign = "left";
         textObjetivo = "Objetivo: El objetivo del juego es subir tanto como puedas\n";
-        textControles = "Controles: Para moverse usar A o D o las felchas <- y -> para pausar usar esc\n";
+        textControles = "Controles: Para moverse usar A o D o las flechas <- y ->\n";
         textRegreso = "Para regrsear presiona esc";
         ctx.font = "20px Arial";
         ctx.strokeText(textControles, 0, 100);
@@ -56,7 +56,7 @@ window.addEventListener("load", ()=>{
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Como se juega", canvas.width/2, ((canvas.width/4)*2)+80);
+                ctx.strokeText("Cómo se juega", canvas.width/2, ((canvas.width/4)*2)+80);
             ctx.closePath();
             ctx.beginPath();
                 ctx.rect(canvas.width/4,(canvas.height/4)*3,canvas.width/2,50);
@@ -84,7 +84,7 @@ window.addEventListener("load", ()=>{
                 ctx.fillStyle = "#E7F543";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Como se juega", canvas.width/2, ((canvas.width/4)*2)+80);
+                ctx.strokeText("Cómo se juega", canvas.width/2, ((canvas.width/4)*2)+80);
             ctx.closePath();
             ctx.beginPath();
                 ctx.rect(canvas.width/4,(canvas.height/4)*3,canvas.width/2,50);
@@ -111,7 +111,7 @@ window.addEventListener("load", ()=>{
                 ctx.fillStyle = "#FFFFFF";
                 ctx.fill();
                 ctx.textAlign = "center";
-                ctx.strokeText("Como se juega", canvas.width/2, ((canvas.width/4)*2)+80);
+                ctx.strokeText("Cómo se juega", canvas.width/2, ((canvas.width/4)*2)+80);
                 ctx.closePath();
                 ctx.beginPath();
                 ctx.rect(canvas.width/4,(canvas.height/4)*3,canvas.width/2,50);
@@ -351,7 +351,7 @@ window.addEventListener("load", ()=>{
                 {
                     clearInterval(scoring);
                     window.location.reload();
-                    window.location="../templates/menu.html";
+                    window.location="../templates/kikijump.html";
                     return 0;
                 }
             }
