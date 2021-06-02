@@ -21,6 +21,7 @@ function cookieName (name, display=false)
     return false;
 }
 var jumpDisplay=document.getElementById("jump");
+var kikivkori = document.getElementById("kVKori");
 var div = document.createElement("div");
 jumpDisplay.append(div);
 var maxDisplay=0, scores=[], user=[], points=[], game=[];
@@ -41,6 +42,10 @@ while(maxDisplay<15)
         if(decompose[2]==" Jump")
         {
             game.push("Kiki Jump:")
+        }
+        else if(decompose[2] ==" KivKo")
+        {
+            game.push("Kiki vs Kori");
         }
     }
     maxDisplay++;
