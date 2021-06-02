@@ -128,9 +128,11 @@ window.addEventListener("load", ()=>{
             if(maxDisplay<15)
             {
                 let decompose, separate;
-                decompose=scores[maxDisplay].split(",");
-
-                if(decompose.length>=3)
+                if(scores[maxDisplay])
+                {
+                    decompose=scores[maxDisplay].split(",");
+                }
+                if(decompose&&decompose.length>=3)
                 {
                     user.push(decompose[0]);
                     separate=decompose[1].split("=");
