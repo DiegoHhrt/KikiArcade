@@ -99,7 +99,11 @@ window.addEventListener('load', ()=>{
             {
               jugando = false;
               pantalla.innerHTML = "<h1 id='perdiste'>Perdiste<h1><h1 id='resultados'>Puntaje:"+puntos+"<h1>";
-              puntajeFunc();
+              pantalla.innerHTML += "<div id='back'>regresar al menu</siv>"
+              document.querySelector("#back").addEventListener("click", ()=>{
+                window.location.reload();
+              })
+              //puntajeFunc();
             }
           }
           //avanza
